@@ -1,37 +1,26 @@
 import RPi.GPIO as g
-import time
-import sys
+from config import config
 
-g.setmode(g.BCM)
+g.setmode(config.pinmode)
 g.setwarnings(False)
 
-limit = 25
-gap = 0.1
+led1a = config.led1a
+led1b = config.led1b
+led1c = config.led1c
+led1d = config.led1d
+led1e = config.led1e
+led1f = config.led1f
+led1g = config.led1g
+led1dot = config.led1dot
 
-if len(sys.argv) > 1:
-    limit = int(sys.argv[1])
-    gap = float(sys.argv[2])
-else:
-    limit = 99
-    gap = 0.1
-
-led1a = 22
-led1b = 27
-led1c = 18
-led1d = 17
-led1e = 4
-led1f = 23
-led1g = 24
-led1dot = 15
-
-led2a = 3
-led2b = 2
-led2c = 14
-led2d = 10
-led2e = 9
-led2f = 11
-led2g = 0
-led2dot = 5
+led2a = config.led2a
+led2b = config.led2b
+led2c = config.led2c
+led2d = config.led2d
+led2e = config.led2e
+led2f = config.led2f
+led2g = config.led2g
+led2dot = config.led2dot
 
 g.setup(led1a, g.OUT)
 g.setup(led1b, g.OUT)
@@ -50,72 +39,6 @@ g.setup(led2e, g.OUT)
 g.setup(led2f, g.OUT)
 g.setup(led2g, g.OUT)
 g.setup(led2dot, g.OUT)
-
-g.output(led2a, g.LOW)
-g.output(led2b, g.LOW)
-g.output(led2c, g.LOW)
-g.output(led2d, g.LOW)
-g.output(led2e, g.LOW)
-g.output(led2f, g.LOW)
-g.output(led2g, g.LOW)
-g.output(led2dot, g.LOW)
-g.output(led1a, g.LOW)
-g.output(led1b, g.LOW)
-g.output(led1c, g.LOW)
-g.output(led1d, g.LOW)
-g.output(led1e, g.LOW)
-g.output(led1f, g.LOW)
-g.output(led1g, g.LOW)
-g.output(led1dot, g.LOW)
-
-g.output(led1a, g.HIGH)
-time.sleep(0.1)
-g.output(led1a, g.LOW)
-g.output(led1b, g.HIGH)
-time.sleep(0.1)
-g.output(led1b, g.LOW)
-g.output(led1c, g.HIGH)
-time.sleep(0.1)
-g.output(led1c, g.LOW)
-g.output(led1d, g.HIGH)
-time.sleep(0.1)
-g.output(led1d, g.LOW)
-g.output(led1e, g.HIGH)
-time.sleep(0.1)
-g.output(led1e, g.LOW)
-g.output(led1f, g.HIGH)
-time.sleep(0.1)
-g.output(led1f, g.LOW)
-g.output(led1g, g.HIGH)
-time.sleep(0.1)
-g.output(led1g, g.LOW)
-g.output(led1dot, g.HIGH)
-time.sleep(0.1)
-g.output(led1dot, g.LOW)
-g.output(led2a, g.HIGH)
-time.sleep(0.1)
-g.output(led2a, g.LOW)
-g.output(led2b, g.HIGH)
-time.sleep(0.1)
-g.output(led2b, g.LOW)
-g.output(led2c, g.HIGH)
-time.sleep(0.1)
-g.output(led2c, g.LOW)
-g.output(led2d, g.HIGH)
-time.sleep(0.1)
-g.output(led2d, g.LOW)
-g.output(led2e, g.HIGH)
-time.sleep(0.1)
-g.output(led2e, g.LOW)
-g.output(led2f, g.HIGH)
-time.sleep(0.1)
-g.output(led2f, g.LOW)
-g.output(led2g, g.HIGH)
-time.sleep(0.1)
-g.output(led2g, g.LOW)
-g.output(led2dot, g.HIGH)
-time.sleep(0.1)
-g.output(led2dot, g.LOW)
 
 def setnum(num):
     digit1 = 0
@@ -209,11 +132,3 @@ def setnum(num):
         g.output(numb8, g.HIGH)
     if b == 9:
         g.output(numb9, g.HIGH)
-x = 0
-while True:
-    setnum(x)
-    if x == limit:
-        x = 0
-    else:
-        x = x + 1
-    time.sleep(gap)
