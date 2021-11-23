@@ -1,6 +1,7 @@
 import RPi.GPIO as g
-import config.config as config
+from config import config
 
+g.setmode(config.pinmode)
 g.setwarnings(False)
 
 led1a = config.led1a
@@ -20,8 +21,6 @@ led2e = config.led2e
 led2f = config.led2f
 led2g = config.led2g
 led2dot = config.led2dot
-
-g.setmode(g.BCM)
 
 g.setup(led1a, g.OUT)
 g.setup(led1b, g.OUT)
