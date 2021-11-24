@@ -1,7 +1,7 @@
 import RPi.GPIO as g
 
 if __name__ != '__main__':
-    import sevenseq.lib.config as config
+    import sevenseq.config.config as config
 
 g.setmode(g.BCM)
 g.setwarnings(False)
