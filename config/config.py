@@ -1,13 +1,3 @@
-import RPi.GPIO as g
-
-# for pinmode, enter pin layout mode
-#
-# for GPIO numbering, choose g.BCM  
-#
-# or, for pin numbering, choose g.BOARD 
-
-pinmode = g.BCM
-
 # enter corresponding pin numbers associated with each
 # individual led on each digit
 # ex: led1a is led A on the 1st digit

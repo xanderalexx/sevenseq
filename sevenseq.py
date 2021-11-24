@@ -1,7 +1,9 @@
 import RPi.GPIO as g
-from config import config
 
-g.setmode(config.pinmode)
+if __name__ != '__main__':
+    import sevenseq.lib.config as config
+
+g.setmode(g.BCM)
 g.setwarnings(False)
 
 led1a = config.led1a
