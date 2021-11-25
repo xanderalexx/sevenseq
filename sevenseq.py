@@ -1,4 +1,5 @@
 import RPi.GPIO as g
+import time
 
 if __name__ != '__main__':
     import sevenseq.config.config as config
@@ -42,7 +43,59 @@ g.setup(led2f, g.OUT)
 g.setup(led2g, g.OUT)
 g.setup(led2dot, g.OUT)
 
-def setnum(num):
+numa0 = [led1a, led1b, led1c, led1d, led1e, led1f]
+numa1 = [led1b, led1c]
+numa2 = [led1a, led1b, led1g, led1e, led1d]
+numa3 = [led1a, led1b, led1g, led1c, led1d]
+numa4 = [led1f, led1g, led1b, led1c]
+numa5 = [led1a, led1f, led1g, led1c, led1d]
+numa6 = [led1a, led1f, led1e, led1d, led1c, led1g]
+numa7 = [led1a, led1b, led1c]
+numa8 = [led1a, led1b, led1c, led1d, led1e, led1f, led1g]
+numa9 = [led1a, led1f, led1g, led1b, led1c]
+
+numb0 = [led2a, led2b, led2c, led2d, led2e, led2f]
+numb1 = [led2b, led2c]
+numb2 = [led2a, led2b, led2g, led2e, led2d]
+numb3 = [led2a, led2b, led2g, led2c, led2d]
+numb4 = [led2f, led2g, led2b, led2c]
+numb5 = [led2a, led2f, led2g, led2c, led2d]
+numb6 = [led2a, led2f, led2e, led2d, led2c, led2g]
+numb7 = [led2a, led2b, led2c]
+numb8 = [led2a, led2b, led2c, led2d, led2e, led2f, led2g]
+numb9 = [led2a, led2f, led2g, led2b, led2c]
+
+allleds = [led1a, led1b, led1c, led1d, led1e, led1f, led1g, led1dot, led2a, led2b, led2c, led2d, led2e, led2f, led2g, led2dot]
+
+def animate(opt):
+    x = 0
+    g.output(led1a, g.LOW)
+    g.output(led1b, g.LOW)
+    g.output(led1c, g.LOW)
+    g.output(led1d, g.LOW)
+    g.output(led1e, g.LOW)
+    g.output(led1f, g.LOW)
+    g.output(led1g, g.LOW)
+    g.output(led1dot, g.LOW)
+    
+    g.output(led2a, g.LOW)
+    g.output(led2b, g.LOW)
+    g.output(led2c, g.LOW)
+    g.output(led2d, g.LOW)
+    g.output(led2e, g.LOW)
+    g.output(led2f, g.LOW)
+    g.output(led2g, g.LOW)
+    g.output(led2dot, g.LOW)
+    
+    if opt == 0:
+        while(x < 5):
+            g.output(allleds, g.LOW)
+            time.sleep(0.1)
+            x = x + 1
+    
+    return 0
+
+def setnum(num, animate = False, opt = None):
     digit1 = 0
     digit2 = 0
     
@@ -54,27 +107,9 @@ def setnum(num):
     else:
         a = 0
         b = num
-    numa0 = [led1a, led1b, led1c, led1d, led1e, led1f]
-    numa1 = [led1b, led1c]
-    numa2 = [led1a, led1b, led1g, led1e, led1d]
-    numa3 = [led1a, led1b, led1g, led1c, led1d]
-    numa4 = [led1f, led1g, led1b, led1c]
-    numa5 = [led1a, led1f, led1g, led1c, led1d]
-    numa6 = [led1a, led1f, led1e, led1d, led1c, led1g]
-    numa7 = [led1a, led1b, led1c]
-    numa8 = [led1a, led1b, led1c, led1d, led1e, led1f, led1g]
-    numa9 = [led1a, led1f, led1g, led1b, led1c]
     
-    numb0 = [led2a, led2b, led2c, led2d, led2e, led2f]
-    numb1 = [led2b, led2c]
-    numb2 = [led2a, led2b, led2g, led2e, led2d]
-    numb3 = [led2a, led2b, led2g, led2c, led2d]
-    numb4 = [led2f, led2g, led2b, led2c]
-    numb5 = [led2a, led2f, led2g, led2c, led2d]
-    numb6 = [led2a, led2f, led2e, led2d, led2c, led2g]
-    numb7 = [led2a, led2b, led2c]
-    numb8 = [led2a, led2b, led2c, led2d, led2e, led2f, led2g]
-    numb9 = [led2a, led2f, led2g, led2b, led2c]
+    if animate:
+        p = animate(opt)
     
     g.output(led1a, g.LOW)
     g.output(led1b, g.LOW)
