@@ -95,7 +95,7 @@ def animate(opt):
             g.output(allleds, g.LOW)
             x = x + 1
 
-def setnum(num, animate = False, opt = None):
+def setnum(num):
     digit1 = 0
     digit2 = 0
     
@@ -107,9 +107,6 @@ def setnum(num, animate = False, opt = None):
     else:
         a = 0
         b = num
-    
-    if animate:
-        animate(opt)
     
     g.output(led1a, g.LOW)
     g.output(led1b, g.LOW)
