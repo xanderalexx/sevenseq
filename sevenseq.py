@@ -89,8 +89,10 @@ def animate(opt):
     
     if opt == 0:
         while(x < 5):
-            g.output(allleds, g.LOW)
             time.sleep(0.1)
+            g.output(allleds, g.HIGH)
+            time.sleep(0.1)
+            g.output(allleds, g.LOW)
             x = x + 1
     
     return 0
