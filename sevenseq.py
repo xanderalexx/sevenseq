@@ -52,7 +52,7 @@ numa5 = [led1a, led1f, led1g, led1c, led1d]
 numa6 = [led1a, led1f, led1e, led1d, led1c, led1g]
 numa7 = [led1a, led1b, led1c]
 numa8 = [led1a, led1b, led1c, led1d, led1e, led1f, led1g]
-numa9 = [led1a, led1f, led1g, led1b, led1c]
+numa9 = [led1a, led1f, led1g, led1b, led1c, led1d]
 
 numb0 = [led2a, led2b, led2c, led2d, led2e, led2f]
 numb1 = [led2b, led2c]
@@ -63,7 +63,7 @@ numb5 = [led2a, led2f, led2g, led2c, led2d]
 numb6 = [led2a, led2f, led2e, led2d, led2c, led2g]
 numb7 = [led2a, led2b, led2c]
 numb8 = [led2a, led2b, led2c, led2d, led2e, led2f, led2g]
-numb9 = [led2a, led2f, led2g, led2b, led2c]
+numb9 = [led2a, led2f, led2g, led2b, led2c, led2d]
 
 allleds = [led1a, led1b, led1c, led1d, led1e, led1f, led1g, led1dot, led2a, led2b, led2c, led2d, led2e, led2f, led2g, led2dot]
 
@@ -96,18 +96,6 @@ def animate(opt):
             x = x + 1
 
 def setnum(num):
-    digit1 = 0
-    digit2 = 0
-    
-    if num > 99:
-        return
-    if num >= 10:
-        a = int(str(num)[0])
-        b = int(str(num)[1])
-    else:
-        a = 0
-        b = num
-    
     g.output(led1a, g.LOW)
     g.output(led1b, g.LOW)
     g.output(led1c, g.LOW)
@@ -125,6 +113,28 @@ def setnum(num):
     g.output(led2f, g.LOW)
     g.output(led2g, g.LOW)
     g.output(led2dot, g.LOW)
+    
+    digit1 = 0
+    digit2 = 0
+    
+    if num > 99:
+        g.output(led2dot, g.HIGH)
+        a = int(str(num)[1])
+        b = int(str(num)[2])
+    elif num < 0 and num > -10:
+        g.output(led1dot, g.HIGH)
+        b = int(str(num)[1])
+        a = 0
+    elif num < 0:
+        g.output(led1dot, g.HIGH)
+        a = int(str(num)[1])
+        b = int(str(num)[2])
+    elif num >= 10:
+        a = int(str(num)[0])
+        b = int(str(num)[1])
+    else:
+        a = 0
+        b = num
     
     if a == 0:
         g.output(numa0, g.HIGH)
