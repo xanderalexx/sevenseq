@@ -87,15 +87,20 @@ def animate(opt):
     g.output(led2g, g.LOW)
     g.output(led2dot, g.LOW)
     
-    if opt == 0:
+    if opt == 1:
         while(x < 5):
             time.sleep(0.1)
             g.output(allleds, g.HIGH)
             time.sleep(0.1)
             g.output(allleds, g.LOW)
             x = x + 1
+    if opt == 2:
+        for led in allleds:
+            g.output(led, g.HIGH)
+            time.sleep(0.1)
+            g.output(allleds, g.LOW)
 
-def setnum(num):
+def setnum(num, opt = 0):
     g.output(led1a, g.LOW)
     g.output(led1b, g.LOW)
     g.output(led1c, g.LOW)
@@ -114,28 +119,35 @@ def setnum(num):
     g.output(led2g, g.LOW)
     g.output(led2dot, g.LOW)
     
+    if opt != 0:
+        animate(opt)
+    
     digit1 = 0
     digit2 = 0
     
-    if num > 99:
-        g.output(led2dot, g.HIGH)
-        a = int(str(num)[1])
-        b = int(str(num)[2])
-    elif num < 0 and num > -10:
-        g.output(led1dot, g.HIGH)
-        b = int(str(num)[1])
-        a = 0
-    elif num < 0:
-        g.output(led1dot, g.HIGH)
-        a = int(str(num)[1])
-        b = int(str(num)[2])
-    elif num >= 10:
+    if isinstance(num, float):
         a = int(str(num)[0])
-        b = int(str(num)[1])
+        b = int(str(num)[2])
+        g.output(led1dot, g.HIGH)
     else:
-        a = 0
-        b = num
-    
+        if num > 99:
+            g.output(led2dot, g.HIGH)
+            a = int(str(num)[1])
+            b = int(str(num)[2])
+        elif num < 0 and num > -10:
+            g.output(led1dot, g.HIGH)
+            b = int(str(num)[1])
+            a = 0
+        elif num < 0:
+            g.output(led1dot, g.HIGH)
+            a = int(str(num)[1])
+            b = int(str(num)[2])
+        elif num >= 10:
+            a = int(str(num)[0])
+            b = int(str(num)[1])
+        else:
+            a = 0
+            b = num
     if a == 0:
         g.output(numa0, g.HIGH)
     if a == 1:
